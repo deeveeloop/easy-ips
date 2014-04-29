@@ -6,6 +6,8 @@ read ips_netmask;
 #echo "gateway";
 #read ips_gateway;
 
+apt-get update
+apt-get -y install openssh-server
 #apache2
 apt-get -y install apache2
 service apache2 restart
