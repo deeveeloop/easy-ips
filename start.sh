@@ -1,4 +1,10 @@
 #!/bin/bash
+echo "Write IP address of IPS - web interface, followed by [ENTER]";
+read ips_ip;
+echo "netmask in xxx.xxx.xxx.xxx format";
+read ips_netmask;
+#echo "gateway";
+#read ips_gateway;
 
 #apache2
 apt-get -y install apache2
@@ -98,10 +104,9 @@ iface eth1 inet manual
 
 auto eth2
 iface eth2 inet static
-   address 10.111.11.1
-   netmask 255.255.255.0
-   gateway 10.111.11.254
-
+   address $ips_ip
+   netmask $ips_netmask
+   
 EOF
 
 chmod 644 /etc/suricata/threshold.config
