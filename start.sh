@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "Write IP address of IPS - web interface, followed by [ENTER]";
 read ips_ip;
 echo "netmask in xxx.xxx.xxx.xxx format";
@@ -122,9 +123,9 @@ chmod 644 /etc/suricata/classification.config
 chmod 644 /etc/suricata/reference.config
 
 echo "*** update suricata configuration ***";
-
-cd ~/easy-ips/
-sudo cp suricata.yaml /etc/suricata/ > installation.log 2>&1
+pwd
+cd ..
+cp suricata.yaml /etc/suricata/
 #suricata -c /etc/suricata/suricata.yaml --af-packet
 echo "### WELL DONE ###"
 echo "Now pls reboot the system using sudo reboot"
