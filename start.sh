@@ -9,9 +9,11 @@ read ips_netmask;
 apt-get update
 apt-get -y install openssh-server
 #apache2
+echo "*** install apache2 ***";
 apt-get -y install apache2
 service apache2 restart
 #suricata
+echo "*** install Suricata ***";
 apt-get install libgeoip-dev libgeoip1
 apt-get -y install libpcre3 libpcre3-dbg libpcre3-dev \
 build-essential autoconf automake libtool libpcap-dev libnet1-dev \
@@ -24,9 +26,11 @@ git clone https://github.com/ironbee/libhtp.git -b 0.5.x \
 --with-libnspr-libraries=/usr/lib --with-libnspr-includes=/usr/include/nspr \
 && make clean && make  && make install-full && sudo ldconfig
 
+echo "*** update adn java install ***";
 apt-get update
 apt-get -y install openjdk-7-jdk openjdk-7-jre-headless
 
+echo "*** install elasticsearch, logstash and kibana ***";
 wget https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0.tar.gz
 wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.0.deb
 wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.0-1-c82dc09_all.deb
@@ -34,6 +38,8 @@ wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logsta
 tar -C /var/www/ -xzf kibana-3.0.0.tar.gz
 dpkg -i elasticsearch-1.1.0.deb
 dpkg -i logstash_1.4.0-1-c82dc09_all.deb
+
+echo "*** update logstash configuration ***";
 
 touch /etc/logstash/conf.d/logstash.conf
 cd /etc/logstash/conf.d
@@ -84,6 +90,8 @@ service logstash start
 
 apt-get install ethtool
 
+echo "*** update network configuration ***";
+
 cat "">/etc/network/interfaces
 cat <<EOF>>/etc/network/interfaces
 
@@ -112,6 +120,8 @@ EOF
 chmod 644 /etc/suricata/threshold.config
 chmod 644 /etc/suricata/classification.config
 chmod 644 /etc/suricata/reference.config
+
+echo "*** update suricata configuration ***";
 
 cd ~/easy-ips/
 sudo cp suricata.yaml /etc/suricata/ > installation.log 2>&1
