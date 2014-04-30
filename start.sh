@@ -16,7 +16,7 @@ apt-get install libgeoip-dev libgeoip1
 apt-get -y install libpcre3 libpcre3-dbg libpcre3-dev \
 build-essential autoconf automake libtool libpcap-dev libnet1-dev \
 libyaml-0-2 libyaml-dev zlib1g zlib1g-dev libcap-ng-dev libcap-ng0 \
-make libmagic-dev git pkg-config libnss3-dev libnspr4-dev wget libjansson-dev libjansson4
+make libmagic-dev pkg-config libnss3-dev libnspr4-dev wget libjansson-dev libjansson4
 git clone git://phalanx.openinfosecfoundation.org/oisf.git && cd oisf && \
 git clone https://github.com/ironbee/libhtp.git -b 0.5.x \
 && ./autogen.sh && ./configure --prefix=/usr/ --sysconfdir=/etc/ --localstatedir=/var/ \
@@ -24,8 +24,8 @@ git clone https://github.com/ironbee/libhtp.git -b 0.5.x \
 --with-libnspr-libraries=/usr/lib --with-libnspr-includes=/usr/include/nspr \
 && make clean && make  && make install-full && sudo ldconfig
 
-cd
-cp suricata.yaml /etc/suricata/
+cd ~/easy-ips/
+cp suricata.yaml /etc/suricata/ > installation.log 2>&1
 
 apt-get update
 apt-get -y install openjdk-7-jdk openjdk-7-jre-headless
@@ -87,6 +87,7 @@ service logstash start
 
 apt-get install ethtool
 
+cat "">/etc/network/interfaces
 cat <<EOF>>/etc/network/interfaces
 
 auto lo
