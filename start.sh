@@ -28,7 +28,8 @@ git clone https://github.com/ironbee/libhtp.git -b 0.5.x \
 && make clean && make  && make install-full && sudo ldconfig
 
 echo "*** update adn java install ***";
-dir_x=pwd;
+pwd;
+dir_x=`pwd`
 apt-get update
 apt-get -y install openjdk-7-jdk openjdk-7-jre-headless
 
@@ -124,7 +125,6 @@ chmod 644 /etc/suricata/classification.config
 chmod 644 /etc/suricata/reference.config
 
 echo "*** update suricata configuration ***";
-pwd
 cd $dir_x;
 cd ..
 cp suricata.yaml /etc/suricata/
