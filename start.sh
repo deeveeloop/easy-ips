@@ -24,9 +24,6 @@ git clone https://github.com/ironbee/libhtp.git -b 0.5.x \
 --with-libnspr-libraries=/usr/lib --with-libnspr-includes=/usr/include/nspr \
 && make clean && make  && make install-full && sudo ldconfig
 
-cd ~/easy-ips/
-cp suricata.yaml /etc/suricata/ > installation.log 2>&1
-
 apt-get update
 apt-get -y install openjdk-7-jdk openjdk-7-jre-headless
 
@@ -116,6 +113,8 @@ chmod 644 /etc/suricata/threshold.config
 chmod 644 /etc/suricata/classification.config
 chmod 644 /etc/suricata/reference.config
 
+cd ~/easy-ips/
+sudo cp suricata.yaml /etc/suricata/ > installation.log 2>&1
 #suricata -c /etc/suricata/suricata.yaml --af-packet
 echo "### WELL DONE ###"
 echo "Now pls reboot the system using sudo reboot"
